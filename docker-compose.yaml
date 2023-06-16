@@ -1,0 +1,33 @@
+version: "3"
+services:
+  app:
+    #build: .
+    build:
+      context: ./main
+      dockerfile: Dockerfile    
+    container_name: my-hello-world-api
+    command: nodemon server.js --verbose
+    ports:
+      - 3008:3008
+    volumes:
+      #- .:/app
+      - ./main:/app      
+    depends_on:
+      - db
+
+  db:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - 27017:27017
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    ports:
+      - 8081:8081
+    restart: unless-stopped
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=db
+    depends_on:
+      - db
