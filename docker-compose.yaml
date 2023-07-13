@@ -5,7 +5,7 @@ services:
     build:
       context: ./main
       dockerfile: Dockerfile    
-    container_name: my-hello-world-api
+    container_name: my-hello-world-api2
     command: nodemon server.js --verbose
     ports:
       - 3008:3008
@@ -17,13 +17,13 @@ services:
 
   db:
     image: mongo
-    container_name: mongodb
+    container_name: mongodb2
     ports:
       - 27017:27017
 
   mongo-express:
     image: mongo-express
-    container_name: mongo-express
+    container_name: mongo-express2
     ports:
       - 8081:8081
     restart: unless-stopped
