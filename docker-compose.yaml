@@ -21,6 +21,18 @@ services:
     ports:
       - 27017:27017
 
+  postgres_db:
+    image: postgres:latest
+    container_name: postgresql_container
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: MAKAKA
+      POSTGRES_USER: makar
+      POSTGRES_PASSWORD: ua
+    ports:
+      - "5432:5432"      
+
   mongo-express:
     image: mongo-express
     container_name: mongo-express2
